@@ -1,0 +1,93 @@
+
+.. code:: ipython3
+
+    from mirapy.data.load_dataset import load_ogle_dataset
+    from mirapy.classifiers.models import OGLEClassifier
+    from keras.utils.np_utils import to_categorical
+    import mirapy
+
+.. code:: ipython3
+
+    path = 'D:\MTP\ogle'
+
+.. code:: ipython3
+
+    x_train, y_train, x_test, y_test = load_ogle_dataset(path, classes = ["cep" , "dsct" ,"lpv (empty)", "rrlyr" ,"t2cep"])
+
+50 is the optimal length to minimize class inequality
+
+.. code:: ipython3
+
+    classifier = OGLEClassifier('relu', input_size=50, num_classes=5)
+    classifier.model.compile(optimizer='adam', loss="categorical_crossentropy", metrics=['accuracy'])
+
+.. code:: ipython3
+
+    classifier.compile(optimizer='adam', loss='categorical_crossentropy')
+    print(classifier.model.summary())
+
+
+.. parsed-literal::
+
+    (38431,)
+    _________________________________________________________________
+    Layer (type)                 Output Shape              Param #   
+    =================================================================
+    lstm_9 (LSTM)                (None, 64)                16896     
+    _________________________________________________________________
+    dense_25 (Dense)             (None, 64)                4160      
+    _________________________________________________________________
+    dropout_9 (Dropout)          (None, 64)                0         
+    _________________________________________________________________
+    dense_26 (Dense)             (None, 16)                1040      
+    _________________________________________________________________
+    dense_27 (Dense)             (None, 5)                 85        
+    =================================================================
+    Total params: 22,181
+    Trainable params: 22,181
+    Non-trainable params: 0
+    _________________________________________________________________
+    None
+
+
+.. code:: ipython3
+
+    classifier.train(x_train, to_categorical(y_train),
+                    epochs=10,
+                    batch_size=40,
+                    verbose=2)
+
+
+.. parsed-literal::
+
+    (38431, 5) (38431, 50, 1)
+    Train on 38431 samples, validate on 9608 samples
+    Epoch 1/10
+     - 222s - loss: 0.5010 - acc: 0.8372 - val_loss: 0.3996 - val_acc: 0.8605
+    Epoch 2/10
+     - 178s - loss: 0.4137 - acc: 0.8615 - val_loss: 0.4001 - val_acc: 0.8598
+    Epoch 3/10
+     - 139s - loss: 0.4100 - acc: 0.8608 - val_loss: 0.4016 - val_acc: 0.8599
+    Epoch 4/10
+     - 134s - loss: 0.4028 - acc: 0.8634 - val_loss: 0.4003 - val_acc: 0.8591
+    Epoch 5/10
+     - 140s - loss: 0.3988 - acc: 0.8632 - val_loss: 0.3939 - val_acc: 0.8620
+    Epoch 6/10
+     - 134s - loss: 0.4000 - acc: 0.8631 - val_loss: 0.3895 - val_acc: 0.8629
+    Epoch 7/10
+     - 137s - loss: 0.3956 - acc: 0.8638 - val_loss: 0.3937 - val_acc: 0.8612
+    Epoch 8/10
+     - 135s - loss: 0.3958 - acc: 0.8638 - val_loss: 0.3941 - val_acc: 0.8589
+    Epoch 9/10
+     - 137s - loss: 0.3931 - acc: 0.8647 - val_loss: 0.4103 - val_acc: 0.8582
+    Epoch 10/10
+     - 136s - loss: 0.3950 - acc: 0.8646 - val_loss: 0.3847 - val_acc: 0.8625
+
+
+
+
+.. parsed-literal::
+
+    <keras.callbacks.History at 0x17a952b1400>
+
+

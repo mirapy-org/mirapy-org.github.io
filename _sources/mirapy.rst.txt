@@ -1,0 +1,13 @@
+MiraPy API
+==================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    mirapy.autoencoder
+    mirapy.classifiers
+    mirapy.fitting
+    mirapy.utils
+    mirapy.visualization

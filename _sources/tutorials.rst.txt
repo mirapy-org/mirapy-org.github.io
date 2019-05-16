@@ -1,0 +1,14 @@
+Tutorials
+=========
+
+You can find the jupyter notebooks for the following in our `tutorials <https://github.com/mirapy-org/tutorials>`_ repository.
+
+.. toctree::
+    :glob:
+
+    Astronomical Image Reconstruction using Autoencoder
+    ATLAS variable star Classification
+    HTRU1 Batched Dataset Classification
+    OGLE variable star classification
+    XRay Binary Classification
+    2D and 3D visualisation of Sunspotter dataset

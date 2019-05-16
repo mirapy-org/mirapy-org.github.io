@@ -1,0 +1,502 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HTRU1 Batched Dataset Classification &mdash; MiraPy v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="OGLE variable star classification.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="ATLAS variable star Classification.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2D4264" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MiraPy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">MiraPy: Python Package for Deep Learning in Astronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#applications">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#about-us">About Us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Astronomical Image Reconstruction using Autoencoder.html">Astronomical Image Reconstruction using Autoencoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Astronomical Image Reconstruction using Autoencoder.html#comparing-results">Comparing results</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HTRU1 Batched Dataset Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-imbalanced-dataset">Handling Imbalanced Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-class-weights">1. Using class weights</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dataset-citation">Dataset Citation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="XRay Binary Classification.html">XRay Binary Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2D and 3D visualisation of Sunspotter dataset.html">Playing with Sunspotter Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mirapy.html">MiraPy API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiraPy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>HTRU1 Batched Dataset Classification</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/HTRU1 Batched Dataset Classification.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="htru1-batched-dataset-classification">
+<h1>HTRU1 Batched Dataset Classification<a class="headerlink" href="#htru1-batched-dataset-classification" title="Permalink to this headline">¶</a></h1>
+<p>We will use MiraPy for the classification of pulsars and non-pulsars in
+dataset released by HTRU1 survey. Following implementation is inspired
+by work done by Prof Anna Scaife using Pytorch
+<a class="reference external" href="https://as595.github.io/HTRU1/">here</a>.</p>
+<p>We will begin with importing modules.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">keras.utils</span> <span class="k">import</span> <span class="n">to_categorical</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="k">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
+
+<span class="kn">from</span> <span class="nn">mirapy.data.load_dataset</span> <span class="k">import</span> <span class="n">load_htru1_data</span>
+<span class="kn">from</span> <span class="nn">mirapy.classifiers.models</span> <span class="k">import</span> <span class="n">HTRU1Classifier</span>
+<span class="kn">from</span> <span class="nn">mirapy.utils</span> <span class="k">import</span> <span class="n">accuracy_per_class</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">TensorFlow</span> <span class="n">backend</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Firstly, you need to dowload compressed HTRU1 batched dataset by running
+following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ http://www.jb.man.ac.uk/research/ascaife/htru1-batches-py.tar.gz
+$ tar xvzf htru1-batches-py.tar.gz
+</pre></div>
+</div>
+<p>To load HTRU1 batched dataset into numpy arrays, you can use data loader
+in <a class="reference external" href="https://github.com/mirapy-org/mirapy">MiraPy</a> which is similar to
+that of CIFAR-10 dataset. The images are of size 32x32px cantaining 3
+channels. You can read the details of the dataset in the above link.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">load_htru1_data</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="s1">&#39;htru1-batches-py&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train data: &quot;</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train labels: &quot;</span><span class="p">,</span> <span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test data: &quot;</span><span class="p">,</span> <span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test labels: &quot;</span><span class="p">,</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Train</span> <span class="n">data</span><span class="p">:</span>  <span class="p">(</span><span class="mi">50000</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">Train</span> <span class="n">labels</span><span class="p">:</span>  <span class="p">(</span><span class="mi">50000</span><span class="p">,)</span>
+<span class="n">Test</span> <span class="n">data</span><span class="p">:</span>  <span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">Test</span> <span class="n">labels</span><span class="p">:</span>  <span class="p">(</span><span class="mi">10000</span><span class="p">,)</span>
+</pre></div>
+</div>
+<p>We will plot five sample training images:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_plot</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num_plot</span><span class="p">,</span> <span class="n">num_plot</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_plot</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_plot</span><span class="p">):</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">get_xaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">[</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">get_yaxis</span><span class="p">()</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="HTRU1%20Batched%20Dataset%20Classification_files/HTRU1%20Batched%20Dataset%20Classification_5_0.png" src="HTRU1%20Batched%20Dataset%20Classification_files/HTRU1%20Batched%20Dataset%20Classification_5_0.png" />
+<p>It’s time to setup our DL model.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">num_classes</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">classes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;pulsar&#39;</span><span class="p">,</span> <span class="s1">&#39;nonpulsar&#39;</span><span class="p">)</span>
+<span class="n">input_dim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The neural network requires categorial data during training therefore we
+will first convert numeric labeling to categorical.</p>
+<p>Also, it is our foremost interest to normalize the values in order to
+achieve consistency in dynamic range for a set of images into a small
+range of fractional values.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_train</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+
+<span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">x_train</span> <span class="o">/=</span> <span class="mi">255</span>
+<span class="n">x_test</span> <span class="o">/=</span> <span class="mi">255</span>
+</pre></div>
+</div>
+<p>We will load our proposed CNN model which consists of 2D convolution,
+max pooling, dropout (for regularization), and fully-connected layers.
+We use ReLU activation here but you are free to try other functions.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">HTRU1Classifier</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">num_classes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is what our classification model looks like:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_________________________________________________________________</span>
+<span class="n">Layer</span> <span class="p">(</span><span class="nb">type</span><span class="p">)</span>                 <span class="n">Output</span> <span class="n">Shape</span>              <span class="n">Param</span> <span class="c1">#</span>
+<span class="o">=================================================================</span>
+<span class="n">conv2d_1</span> <span class="p">(</span><span class="n">Conv2D</span><span class="p">)</span>            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>        <span class="mi">896</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">activation_1</span> <span class="p">(</span><span class="n">Activation</span><span class="p">)</span>    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>        <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">conv2d_2</span> <span class="p">(</span><span class="n">Conv2D</span><span class="p">)</span>            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>        <span class="mi">9248</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">activation_2</span> <span class="p">(</span><span class="n">Activation</span><span class="p">)</span>    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>        <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">max_pooling2d_1</span> <span class="p">(</span><span class="n">MaxPooling2</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>        <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">dropout_1</span> <span class="p">(</span><span class="n">Dropout</span><span class="p">)</span>          <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>        <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">conv2d_3</span> <span class="p">(</span><span class="n">Conv2D</span><span class="p">)</span>            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>        <span class="mi">18496</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">activation_3</span> <span class="p">(</span><span class="n">Activation</span><span class="p">)</span>    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>        <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">conv2d_4</span> <span class="p">(</span><span class="n">Conv2D</span><span class="p">)</span>            <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>        <span class="mi">36928</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">activation_4</span> <span class="p">(</span><span class="n">Activation</span><span class="p">)</span>    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>        <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">max_pooling2d_2</span> <span class="p">(</span><span class="n">MaxPooling2</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>          <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">dropout_2</span> <span class="p">(</span><span class="n">Dropout</span><span class="p">)</span>          <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>          <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">flatten_1</span> <span class="p">(</span><span class="n">Flatten</span><span class="p">)</span>          <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">2304</span><span class="p">)</span>              <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">dense_1</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>              <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>               <span class="mi">1180160</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">activation_5</span> <span class="p">(</span><span class="n">Activation</span><span class="p">)</span>    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>               <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">dropout_3</span> <span class="p">(</span><span class="n">Dropout</span><span class="p">)</span>          <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>               <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">dense_2</span> <span class="p">(</span><span class="n">Dense</span><span class="p">)</span>              <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                 <span class="mi">1026</span>
+<span class="n">_________________________________________________________________</span>
+<span class="n">activation_6</span> <span class="p">(</span><span class="n">Activation</span><span class="p">)</span>    <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>                 <span class="mi">0</span>
+<span class="o">=================================================================</span>
+<span class="n">Total</span> <span class="n">params</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">246</span><span class="p">,</span><span class="mi">754</span>
+<span class="n">Trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span><span class="mi">246</span><span class="p">,</span><span class="mi">754</span>
+<span class="n">Non</span><span class="o">-</span><span class="n">trainable</span> <span class="n">params</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">_________________________________________________________________</span>
+</pre></div>
+</div>
+<p>Here, we use Adam optimizer which has often been obersved to outperform
+RMSprop.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adam</span> <span class="o">=</span> <span class="n">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">beta_1</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">adam</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The time has come to train our network!</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+                 <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">19</span><span class="n">s</span> <span class="mi">372</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0473</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0312</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">335</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0256</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0290</span>
+<span class="n">Epoch</span> <span class="mi">3</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">334</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0231</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0278</span>
+<span class="n">Epoch</span> <span class="mi">4</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">334</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0208</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0251</span>
+<span class="n">Epoch</span> <span class="mi">5</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">335</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0201</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0292</span>
+<span class="n">Epoch</span> <span class="mi">6</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">334</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0209</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0259</span>
+<span class="n">Epoch</span> <span class="mi">7</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">335</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0193</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0308</span>
+<span class="n">Epoch</span> <span class="mi">8</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">336</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0179</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0322</span>
+<span class="n">Epoch</span> <span class="mi">9</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">335</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0172</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0257</span>
+<span class="n">Epoch</span> <span class="mi">10</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">335</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0161</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0235</span>
+</pre></div>
+</div>
+<p>Below, we will predict classes for test set and print various evaluation
+metrics:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy per class [pulsar, non-pulsar]:&quot;</span><span class="p">,</span> <span class="n">accuracy_per_class</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Accuracy: 99.34 %
+              precision    recall  f1-score   support
+
+           0       0.90      0.75      0.82       199
+           1       1.00      1.00      1.00      9801
+
+   micro avg       0.99      0.99      0.99     10000
+   macro avg       0.95      0.88      0.91     10000
+weighted avg       0.99      0.99      0.99     10000
+ samples avg       0.99      0.99      0.99     10000
+
+Accuracy per class [pulsar, non-pulsar]: [0.75376884 0.99826548]
+</pre></div>
+</div>
+</div>
+<div class="section" id="handling-imbalanced-dataset">
+<h1>Handling Imbalanced Dataset<a class="headerlink" href="#handling-imbalanced-dataset" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="using-class-weights">
+<h2>1. Using class weights<a class="headerlink" href="#using-class-weights" title="Permalink to this headline">¶</a></h2>
+<p>One way to tackle imbalanced datasets is that assigning class weights
+while training so that the loss function becomes weighted average. We
+can assign the weights inversely propotional to the number of data
+points belonging to each class. We can also write it as-</p>
+<p>w1n1 = w2n2</p>
+<p>The dataset contains 1194 true pulsars and 58806 non-pulsars in total.
+Accordingly, we will set class weights and retrain our network.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">class_weight</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="n">class_weight</span><span class="p">,</span>
+                 <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Train</span> <span class="n">on</span> <span class="mi">50000</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">10000</span> <span class="n">samples</span>
+<span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">331</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0028</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0414</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">333</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0022</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0867</span>
+<span class="n">Epoch</span> <span class="mi">3</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">333</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0027</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0480</span>
+<span class="n">Epoch</span> <span class="mi">4</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">336</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0024</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.1576</span>
+<span class="n">Epoch</span> <span class="mi">5</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">333</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0025</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0854</span>
+<span class="n">Epoch</span> <span class="mi">6</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">334</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0022</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.2184</span>
+<span class="n">Epoch</span> <span class="mi">7</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">333</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0026</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0503</span>
+<span class="n">Epoch</span> <span class="mi">8</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">333</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0025</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0355</span>
+<span class="n">Epoch</span> <span class="mi">9</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">335</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0021</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0533</span>
+<span class="n">Epoch</span> <span class="mi">10</span><span class="o">/</span><span class="mi">10</span>
+<span class="mi">50000</span><span class="o">/</span><span class="mi">50000</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">17</span><span class="n">s</span> <span class="mi">335</span><span class="n">us</span><span class="o">/</span><span class="n">step</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0024</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0603</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy per class [pulsar, non-pulsar]:&quot;</span><span class="p">,</span> <span class="n">accuracy_per_class</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Accuracy: 98.17 %
+              precision    recall  f1-score   support
+
+           0       0.52      0.91      0.67       199
+           1       1.00      0.98      0.99      9801
+
+   micro avg       0.98      0.98      0.98     10000
+   macro avg       0.76      0.95      0.83     10000
+weighted avg       0.99      0.98      0.98     10000
+ samples avg       0.98      0.98      0.98     10000
+
+Accuracy per class [pulsar, non-pulsar]: [0.91457286 0.98306295]
+</pre></div>
+</div>
+<p>We can observe improvement in pulsar class accuracy by providing weights
+to each class during training. However, the overall accuracy has
+slightly decreased. There are other ways like ‘oversampling’ of minority
+class to handle imbalanced datasets.</p>
+<div class="section" id="dataset-citation">
+<h3>Dataset Citation<a class="headerlink" href="#dataset-citation" title="Permalink to this headline">¶</a></h3>
+<p>SPINN: a straightforward machine learning solution to the pulsar
+candidate selection problem V. Morello, E.D. Barr, M. Bailes, C.M.
+Flynn, E.F. Keane and W. van Straten, 2014, Monthly Notices of the Royal
+Astronomical Society, vol. 443, pp. 1651-1662 arXiv:1406:3627</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="OGLE variable star classification.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ATLAS variable star Classification.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Swapnil Sharma, Akhil Singhal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

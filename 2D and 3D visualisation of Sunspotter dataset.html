@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Playing with Sunspotter Dataset &mdash; MiraPy v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MiraPy API" href="mirapy.html" />
+    <link rel="prev" title="XRay Binary Classification" href="XRay Binary Classification.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2D4264" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MiraPy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">MiraPy: Python Package for Deep Learning in Astronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#applications">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#about-us">About Us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Astronomical Image Reconstruction using Autoencoder.html">Astronomical Image Reconstruction using Autoencoder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Astronomical Image Reconstruction using Autoencoder.html#comparing-results">Comparing results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HTRU1 Batched Dataset Classification.html">HTRU1 Batched Dataset Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="HTRU1 Batched Dataset Classification.html#handling-imbalanced-dataset">Handling Imbalanced Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="XRay Binary Classification.html">XRay Binary Classification</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Playing with Sunspotter Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#joining-images-rank-and-fitsfiles-dates">Joining images, rank and fitsfiles (dates)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization-using-mirapy">Visualization using MiraPy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mirapy.html">MiraPy API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiraPy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>Playing with Sunspotter Dataset</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/2D and 3D visualisation of Sunspotter dataset.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="playing-with-sunspotter-dataset">
+<h1>Playing with Sunspotter Dataset<a class="headerlink" href="#playing-with-sunspotter-dataset" title="Permalink to this headline">¶</a></h1>
+<p>Following code is the imitation of example in
+<a class="reference external" href="https://github.com/sunspotter/database/blob/master/example_analysis.py">database</a>
+repository. ## Reading data set</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">mirapy.visualization</span> <span class="k">import</span> <span class="n">visualize_2d</span><span class="p">,</span> <span class="n">visualize_3d</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_columns</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">images</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;all_clear_dataset/lookup_properties.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">fitsfiles</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;all_clear_dataset/lookup_timesfits.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">classification</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;all_clear_dataset/classifications.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">zoorank</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;all_clear_dataset/rankings.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="joining-images-rank-and-fitsfiles-dates">
+<h2>Joining images, rank and fitsfiles (dates)<a class="headerlink" href="#joining-images-rank-and-fitsfiles-dates" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">fitsfiles</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;id_filename&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">zoorank</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;image_id&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;id_x&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;obs_date&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">_subplots</span><span class="o">.</span><span class="n">AxesSubplot</span> <span class="n">at</span> <span class="mh">0x1179c7748</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<img alt="2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_files/2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_4_1.png" src="2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_files/2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_4_1.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>image_id</th>
+      <th>count</th>
+      <th>k_value</th>
+      <th>score</th>
+      <th>std_dev</th>
+      <th>id_x</th>
+      <th>filename_x</th>
+      <th>zooniverse_id</th>
+      <th>angle</th>
+      <th>area</th>
+      <th>areafrac</th>
+      <th>areathesh</th>
+      <th>bipolesep</th>
+      <th>c1flr24hr</th>
+      <th>id_filename</th>
+      <th>flux</th>
+      <th>fluxfrac</th>
+      <th>hale</th>
+      <th>hcpos_x</th>
+      <th>hcpos_y</th>
+      <th>m1flr12hr</th>
+      <th>m5flr12hr</th>
+      <th>n_nar</th>
+      <th>noaa</th>
+      <th>pxpos_x</th>
+      <th>pxpos_y</th>
+      <th>sszn</th>
+      <th>zurich</th>
+      <th>id_y</th>
+      <th>filename_y</th>
+      <th>obs_date</th>
+    </tr>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2003-05-16 12:46:59</th>
+      <td>1</td>
+      <td>9843</td>
+      <td>50</td>
+      <td>8</td>
+      <td>950.403592</td>
+      <td>1.455031</td>
+      <td>9843</td>
+      <td>530be17a3ae74079c3004cf1.jpg</td>
+      <td>ASZ00001pz</td>
+      <td>42.2014</td>
+      <td>36800.0</td>
+      <td>-0.00</td>
+      <td>237.0</td>
+      <td>2.80</td>
+      <td>0</td>
+      <td>9843</td>
+      <td>1.280000e+22</td>
+      <td>-0.02</td>
+      <td>alpha</td>
+      <td>637.259800</td>
+      <td>-73.593013</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>10360</td>
+      <td>211.63060</td>
+      <td>153.80934</td>
+      <td>9843</td>
+      <td>axx</td>
+      <td>9843</td>
+      <td>20030516_1246_mdiB_1_0360.fits</td>
+      <td>2003-05-16 12:46:59</td>
+    </tr>
+    <tr>
+      <th>2000-04-24 12:51:03</th>
+      <td>2</td>
+      <td>999</td>
+      <td>50</td>
+      <td>8</td>
+      <td>953.549821</td>
+      <td>1.717277</td>
+      <td>999</td>
+      <td>530be1223ae74079c30007d9.jpg</td>
+      <td>ASZ00008tj</td>
+      <td>64.3741</td>
+      <td>53100.0</td>
+      <td>0.02</td>
+      <td>248.0</td>
+      <td>-1.00</td>
+      <td>0</td>
+      <td>999</td>
+      <td>1.580000e+22</td>
+      <td>0.02</td>
+      <td>beta</td>
+      <td>813.492460</td>
+      <td>-273.070680</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>8955</td>
+      <td>163.61865</td>
+      <td>191.88909</td>
+      <td>999</td>
+      <td>cso</td>
+      <td>999</td>
+      <td>20000424_1251_mdiB_1_8955.fits</td>
+      <td>2000-04-24 12:51:03</td>
+    </tr>
+    <tr>
+      <th>2000-10-04 12:51:02</th>
+      <td>3</td>
+      <td>2437</td>
+      <td>50</td>
+      <td>8</td>
+      <td>954.324334</td>
+      <td>2.209654</td>
+      <td>2437</td>
+      <td>530be1303ae74079c3001315.jpg</td>
+      <td>ASZ00009la</td>
+      <td>58.9458</td>
+      <td>55000.0</td>
+      <td>0.09</td>
+      <td>942.0</td>
+      <td>2.63</td>
+      <td>0</td>
+      <td>2437</td>
+      <td>2.270000e+22</td>
+      <td>0.02</td>
+      <td>alpha</td>
+      <td>631.491330</td>
+      <td>-594.304680</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9180</td>
+      <td>179.67297</td>
+      <td>146.28921</td>
+      <td>2437</td>
+      <td>axx</td>
+      <td>2437</td>
+      <td>20001004_1251_mdiB_1_9180.fits</td>
+      <td>2000-10-04 12:51:02</td>
+    </tr>
+    <tr>
+      <th>2001-08-24 12:51:01</th>
+      <td>4</td>
+      <td>5013</td>
+      <td>50</td>
+      <td>8</td>
+      <td>955.205675</td>
+      <td>1.497922</td>
+      <td>5013</td>
+      <td>530be1493ae74079c3002735.jpg</td>
+      <td>ASZ00006us</td>
+      <td>4.6603</td>
+      <td>34000.0</td>
+      <td>-0.10</td>
+      <td>179.0</td>
+      <td>4.73</td>
+      <td>0</td>
+      <td>5013</td>
+      <td>5.060000e+21</td>
+      <td>-0.02</td>
+      <td>beta</td>
+      <td>72.051843</td>
+      <td>-147.618560</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>9593</td>
+      <td>191.25101</td>
+      <td>149.29808</td>
+      <td>5013</td>
+      <td>bxo</td>
+      <td>5013</td>
+      <td>20010824_1251_mdiB_1_9593.fits</td>
+      <td>2001-08-24 12:51:01</td>
+    </tr>
+    <tr>
+      <th>2003-03-10 12:47:00</th>
+      <td>5</td>
+      <td>9473</td>
+      <td>50</td>
+      <td>8</td>
+      <td>956.152484</td>
+      <td>1.888993</td>
+      <td>9473</td>
+      <td>530be1763ae74079c3004a0d.jpg</td>
+      <td>ASZ00001g3</td>
+      <td>72.2923</td>
+      <td>49000.0</td>
+      <td>0.04</td>
+      <td>2820.0</td>
+      <td>0.99</td>
+      <td>0</td>
+      <td>9473</td>
+      <td>2.810000e+22</td>
+      <td>0.05</td>
+      <td>beta</td>
+      <td>928.487990</td>
+      <td>97.902388</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>10309</td>
+      <td>201.35677</td>
+      <td>165.69570</td>
+      <td>9473</td>
+      <td>dso</td>
+      <td>9473</td>
+      <td>20030310_1247_mdiB_1_0309.fits</td>
+      <td>2003-03-10 12:47:00</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># choosing features and target class</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;angle&#39;</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="s1">&#39;areafrac&#39;</span><span class="p">,</span> <span class="s1">&#39;areathesh&#39;</span><span class="p">,</span> <span class="s1">&#39;bipolesep&#39;</span><span class="p">,</span> <span class="s1">&#39;flux&#39;</span><span class="p">,</span> <span class="s1">&#39;fluxfrac&#39;</span><span class="p">,</span> <span class="s1">&#39;n_nar&#39;</span><span class="p">]</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">prediction</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># feature details</span>
+<span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>angle</th>
+      <th>area</th>
+      <th>areafrac</th>
+      <th>areathesh</th>
+      <th>bipolesep</th>
+      <th>flux</th>
+      <th>fluxfrac</th>
+      <th>n_nar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>12965.000000</td>
+      <td>12965.000000</td>
+      <td>12965.000000</td>
+      <td>12965.000000</td>
+      <td>12965.000000</td>
+      <td>1.296500e+04</td>
+      <td>12965.000000</td>
+      <td>12965.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>42.340812</td>
+      <td>57881.596606</td>
+      <td>0.003995</td>
+      <td>4353.975465</td>
+      <td>4.373199</td>
+      <td>3.928112e+22</td>
+      <td>-0.002444</td>
+      <td>1.219823</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>20.210125</td>
+      <td>30895.978507</td>
+      <td>0.115626</td>
+      <td>4041.296829</td>
+      <td>2.234991</td>
+      <td>3.733569e+22</td>
+      <td>0.158558</td>
+      <td>0.532897</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>27000.000000</td>
+      <td>-0.720000</td>
+      <td>0.000000</td>
+      <td>-1.000000</td>
+      <td>4.050000e+21</td>
+      <td>-0.960000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>24.822500</td>
+      <td>34200.000000</td>
+      <td>-0.060000</td>
+      <td>1600.000000</td>
+      <td>2.720000</td>
+      <td>1.770000e+22</td>
+      <td>-0.090000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>40.672300</td>
+      <td>50000.000000</td>
+      <td>0.010000</td>
+      <td>3060.000000</td>
+      <td>4.200000</td>
+      <td>2.910000e+22</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>60.742600</td>
+      <td>69200.000000</td>
+      <td>0.070000</td>
+      <td>5730.000000</td>
+      <td>5.790000</td>
+      <td>4.940000e+22</td>
+      <td>0.080000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>81.171600</td>
+      <td>274000.000000</td>
+      <td>0.570000</td>
+      <td>38200.000000</td>
+      <td>18.160000</td>
+      <td>2.290000e+24</td>
+      <td>0.590000</td>
+      <td>6.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &#39;angle&#39;, &#39;area&#39;, &#39;areathesh&#39;, &#39;flux&#39; need to be normalized</span>
+<span class="n">min_max_scaler</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">min_max_scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="visualization-using-mirapy">
+<h2>Visualization using MiraPy<a class="headerlink" href="#visualization-using-mirapy" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_2d</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_files/2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_10_0.png" src="2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_files/2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_10_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">visualize_3d</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_files/2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_11_0.png" src="2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_files/2D%20and%203D%20visualisation%20of%20Sunspotter%20dataset_11_0.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mirapy.html" class="btn btn-neutral float-right" title="MiraPy API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="XRay Binary Classification.html" class="btn btn-neutral float-left" title="XRay Binary Classification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Swapnil Sharma, Akhil Singhal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

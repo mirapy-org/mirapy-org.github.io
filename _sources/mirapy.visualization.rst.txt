@@ -1,0 +1,22 @@
+mirapy.visualization package
+============================
+
+Submodules
+----------
+
+mirapy.visualization.visualize module
+-------------------------------------
+
+.. automodule:: mirapy.visualization.visualize
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: mirapy.visualization
+    :members:
+    :undoc-members:
+    :show-inheritance:

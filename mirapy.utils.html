@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mirapy.utils package &mdash; MiraPy v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="mirapy.visualization package" href="mirapy.visualization.html" />
+    <link rel="prev" title="mirapy.fitting package" href="mirapy.fitting.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2D4264" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MiraPy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">MiraPy: Python Package for Deep Learning in Astronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#applications">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#about-us">About Us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="mirapy.html">MiraPy API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="mirapy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="mirapy.autoencoder.html">mirapy.autoencoder package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mirapy.classifiers.html">mirapy.classifiers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mirapy.fitting.html">mirapy.fitting package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mirapy.utils package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-mirapy.utils.utils">mirapy.utils.utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-mirapy.utils">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mirapy.visualization.html">mirapy.visualization package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiraPy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="mirapy.html">MiraPy API</a> &raquo;</li>
+        
+      <li>mirapy.utils package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mirapy.utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mirapy-utils-package">
+<h1>mirapy.utils package<a class="headerlink" href="#mirapy-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mirapy.utils.utils">
+<span id="mirapy-utils-utils-module"></span><h2>mirapy.utils.utils module<a class="headerlink" href="#module-mirapy.utils.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="mirapy.utils.utils.accuracy_per_class">
+<code class="descclassname">mirapy.utils.utils.</code><code class="descname">accuracy_per_class</code><span class="sig-paren">(</span><em>y_true</em>, <em>y_pred</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.utils.utils.accuracy_per_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes accuracy per class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> – True class.</p></li>
+<li><p><strong>y_pred</strong> – Predicted class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mirapy.utils.utils.append_one_to_shape">
+<code class="descclassname">mirapy.utils.utils.</code><code class="descname">append_one_to_shape</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.utils.utils.append_one_to_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reshapes input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – Array input.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Reshaped array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mirapy.utils.utils.get_psf_airy">
+<code class="descclassname">mirapy.utils.utils.</code><code class="descname">get_psf_airy</code><span class="sig-paren">(</span><em>n</em>, <em>nr</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.utils.utils.get_psf_airy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates Point Spread Function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – </p></li>
+<li><p><strong>nr</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Numpy array of Point Spread Function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mirapy.utils.utils.image_augmentation">
+<code class="descclassname">mirapy.utils.utils.</code><code class="descname">image_augmentation</code><span class="sig-paren">(</span><em>images</em>, <em>image_data_generator</em>, <em>num_of_augumentations</em>, <em>disable=False</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.utils.utils.image_augmentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form augmented images for input array of images</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>images</strong> – numpy array of Images.</p></li>
+<li><p><strong>image_data_generator</strong> – Keras image generator object.</p></li>
+<li><p><strong>num_of_augumentations</strong> – Number of augmentations of each image.</p></li>
+<li><p><strong>disable</strong> – Bool. Disable/enable tqdm progress bar.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Numpy array of augmented images.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mirapy.utils.utils.psnr">
+<code class="descclassname">mirapy.utils.utils.</code><code class="descname">psnr</code><span class="sig-paren">(</span><em>img1</em>, <em>img2</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.utils.utils.psnr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate Peak Signal to Noise Ratio value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img1</strong> – Float. Array of first image.</p></li>
+<li><p><strong>img2</strong> – Float.Array of second image.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Float. PSNR value of x and y.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mirapy.utils.utils.to_numeric">
+<code class="descclassname">mirapy.utils.utils.</code><code class="descname">to_numeric</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.utils.utils.to_numeric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert numpy array of array of probabilities to numeric array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>y</strong> – Numpy array.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Numpy array of classes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="mirapy.utils.utils.unpickle">
+<code class="descclassname">mirapy.utils.utils.</code><code class="descname">unpickle</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.utils.utils.unpickle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unpickle and read file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> – Pickle file to read.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Data loaded from pickle file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-mirapy.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mirapy.utils" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mirapy.visualization.html" class="btn btn-neutral float-right" title="mirapy.visualization package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mirapy.fitting.html" class="btn btn-neutral float-left" title="mirapy.fitting package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Swapnil Sharma, Akhil Singhal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

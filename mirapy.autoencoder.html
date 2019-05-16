@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>mirapy.autoencoder package &mdash; MiraPy v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="mirapy.classifiers package" href="mirapy.classifiers.html" />
+    <link rel="prev" title="MiraPy API" href="mirapy.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2D4264" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MiraPy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="README.html">MiraPy: Python Package for Deep Learning in Astronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#applications">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#about-us">About Us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="mirapy.html">MiraPy API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="mirapy.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">mirapy.autoencoder package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-mirapy.autoencoder.models">mirapy.autoencoder.models module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-mirapy.autoencoder">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mirapy.classifiers.html">mirapy.classifiers package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mirapy.fitting.html">mirapy.fitting package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mirapy.utils.html">mirapy.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mirapy.visualization.html">mirapy.visualization package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiraPy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="mirapy.html">MiraPy API</a> &raquo;</li>
+        
+      <li>mirapy.autoencoder package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/mirapy.autoencoder.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mirapy-autoencoder-package">
+<h1>mirapy.autoencoder package<a class="headerlink" href="#mirapy-autoencoder-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-mirapy.autoencoder.models">
+<span id="mirapy-autoencoder-models-module"></span><h2>mirapy.autoencoder.models module<a class="headerlink" href="#module-mirapy.autoencoder.models" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="mirapy.autoencoder.models.Autoencoder">
+<em class="property">class </em><code class="descclassname">mirapy.autoencoder.models.</code><code class="descname">Autoencoder</code><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="mirapy.autoencoder.models.Autoencoder.compile">
+<code class="descname">compile</code><span class="sig-paren">(</span><em>optimizer</em>, <em>loss</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder.compile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compile model with given configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> – Instance of optimizer.</p></li>
+<li><p><strong>loss</strong> – String (name of loss function) or custom function.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.Autoencoder.load_model">
+<code class="descname">load_model</code><span class="sig-paren">(</span><em>model_name</em>, <em>path='models/'</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder.load_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a model from a H5py file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> – File name.</p></li>
+<li><p><strong>path</strong> – Pa</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.Autoencoder.plot_history">
+<code class="descname">plot_history</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder.plot_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots loss vs epoch graph.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.Autoencoder.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts the output of the model for the given data as input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – Input data as Numpy arrays.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.Autoencoder.save_model">
+<code class="descname">save_model</code><span class="sig-paren">(</span><em>model_name</em>, <em>path='models/'</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder.save_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a model into a H5py file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_name</strong> – File name.</p></li>
+<li><p><strong>path</strong> – Pa</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.Autoencoder.summary">
+<code class="descname">summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder.summary" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.Autoencoder.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>batch_size=32</em>, <em>epochs=100</em>, <em>validation_data=None</em>, <em>shuffle=True</em>, <em>verbose=1</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.Autoencoder.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model on the training data with given settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Numpy array of training data.</p></li>
+<li><p><strong>y</strong> – Numpy array of target data.</p></li>
+<li><p><strong>epochs</strong> – Integer. Number of epochs during training.</p></li>
+<li><p><strong>batch_size</strong> – Number of samples per gradient update.</p></li>
+<li><p><strong>validation_data</strong> – Numpy array of validation data.</p></li>
+<li><p><strong>shuffle</strong> – Boolean. Shuffles the data before training.</p></li>
+<li><p><strong>verbose</strong> – Value is 0, 1, or 2.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="mirapy.autoencoder.models.DeNoisingAutoencoder">
+<em class="property">class </em><code class="descclassname">mirapy.autoencoder.models.</code><code class="descname">DeNoisingAutoencoder</code><span class="sig-paren">(</span><em>img_dim</em>, <em>activation='relu'</em>, <em>padding='same'</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.DeNoisingAutoencoder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#mirapy.autoencoder.models.Autoencoder" title="mirapy.autoencoder.models.Autoencoder"><code class="xref py py-class docutils literal notranslate"><span class="pre">mirapy.autoencoder.models.Autoencoder</span></code></a></p>
+<dl class="method">
+<dt id="mirapy.autoencoder.models.DeNoisingAutoencoder.compile">
+<code class="descname">compile</code><span class="sig-paren">(</span><em>optimizer</em>, <em>loss</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.DeNoisingAutoencoder.compile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compile model with given configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>optimizer</strong> – Instance of optimizer.</p></li>
+<li><p><strong>loss</strong> – String (name of loss function) or custom function.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.DeNoisingAutoencoder.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.DeNoisingAutoencoder.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts the output of the model for the given data as input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – Input data as Numpy arrays.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.DeNoisingAutoencoder.show_image_pairs">
+<code class="descname">show_image_pairs</code><span class="sig-paren">(</span><em>original_images</em>, <em>decoded_images</em>, <em>max_images</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.DeNoisingAutoencoder.show_image_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays images in pair of images in grid form using Matplotlib.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>original_images</strong> – Array of original images.</p></li>
+<li><p><strong>decoded_images</strong> – Array of decoded images.</p></li>
+<li><p><strong>max_images</strong> – Integer. Set number of images in a row.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="mirapy.autoencoder.models.DeNoisingAutoencoder.train">
+<code class="descname">train</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>batch_size=32</em>, <em>epochs=100</em>, <em>validation_data=None</em>, <em>shuffle=True</em>, <em>verbose=1</em><span class="sig-paren">)</span><a class="headerlink" href="#mirapy.autoencoder.models.DeNoisingAutoencoder.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model on the training data with given settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – Numpy array of training data.</p></li>
+<li><p><strong>y</strong> – Numpy array of target data.</p></li>
+<li><p><strong>epochs</strong> – Integer. Number of epochs during training.</p></li>
+<li><p><strong>batch_size</strong> – Number of samples per gradient update.</p></li>
+<li><p><strong>validation_data</strong> – Numpy array of validation data.</p></li>
+<li><p><strong>shuffle</strong> – Boolean. Shuffles the data before training.</p></li>
+<li><p><strong>verbose</strong> – Value is 0, 1, or 2.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-mirapy.autoencoder">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-mirapy.autoencoder" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mirapy.classifiers.html" class="btn btn-neutral float-right" title="mirapy.classifiers package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mirapy.html" class="btn btn-neutral float-left" title="MiraPy API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Swapnil Sharma, Akhil Singhal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

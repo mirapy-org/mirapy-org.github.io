@@ -1,0 +1,22 @@
+mirapy.classifiers package
+==========================
+
+Submodules
+----------
+
+mirapy.classifiers.models module
+--------------------------------
+
+.. automodule:: mirapy.classifiers.models
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: mirapy.classifiers
+    :members:
+    :undoc-members:
+    :show-inheritance:

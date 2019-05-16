@@ -1,0 +1,298 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; MiraPy v0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HTRU1 Batched Dataset Classification" href="HTRU1 Batched Dataset Classification.html" />
+    <link rel="prev" title="Astronomical Image Reconstruction using Autoencoder" href="Astronomical Image Reconstruction using Autoencoder.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2D4264" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> MiraPy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="README.html">MiraPy: Python Package for Deep Learning in Astronomy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#applications">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#installation">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#contributing">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#about-us">About Us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html#license">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mirapy.html">MiraPy API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">MiraPy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="tutorials.html">Tutorials</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ATLAS variable star Classification.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mirapy.data.load_dataset</span> <span class="k">import</span> <span class="n">load_atlas_star_data</span>
+<span class="kn">from</span> <span class="nn">mirapy.classifiers.models</span> <span class="k">import</span> <span class="n">AtlasVarStarClassifier</span>
+<span class="kn">import</span> <span class="nn">mirapy</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="k">import</span> <span class="n">walk</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">keras.optimizers</span> <span class="k">import</span> <span class="n">Adam</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">StandardScaler</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Using</span> <span class="n">TensorFlow</span> <span class="n">backend</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;D:\MTP\ATLAS\dataset&#39;</span>
+<span class="n">csv_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;non_dub.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Ignore feature list to use features selected using feature selection</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">load_atlas_star_data</span><span class="p">(</span><span class="n">csv_file</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">classifier</span> <span class="o">=</span> <span class="n">AtlasVarStarClassifier</span><span class="p">(</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">input_size</span><span class="o">=</span><span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">y_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;mean_squared_error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># classifier.train(x_train, y_train, epochs=50,</span>
+<span class="c1">#                        batch_size=32)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                       <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">10</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0072</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9576</span>
+<span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">9</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0073</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9567</span>
+<span class="n">Epoch</span> <span class="mi">3</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">9</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0072</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9569</span>
+<span class="n">Epoch</span> <span class="mi">4</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">10</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0071</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9583</span>
+<span class="n">Epoch</span> <span class="mi">5</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">10</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0070</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9585</span>
+<span class="n">Epoch</span> <span class="mi">6</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">10</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0069</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9592</span>
+<span class="n">Epoch</span> <span class="mi">7</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">9</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0069</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9587</span>
+<span class="n">Epoch</span> <span class="mi">8</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">9</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0068</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9596</span>
+<span class="n">Epoch</span> <span class="mi">9</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">9</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0068</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9599</span>
+<span class="n">Epoch</span> <span class="mi">10</span><span class="o">/</span><span class="mi">10</span>
+ <span class="o">-</span> <span class="mi">9</span><span class="n">s</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0067</span> <span class="o">-</span> <span class="n">acc</span><span class="p">:</span> <span class="mf">0.9606</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">History</span> <span class="n">at</span> <span class="mh">0x1c568a10898</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>convert string classes to integer encoded</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">integer_encoded</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">integer_encoded</span>
+
+<span class="n">y_predicted</span> <span class="o">=</span> <span class="n">classifier</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="s2">&quot;%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              <span class="n">precision</span>    <span class="n">recall</span>  <span class="n">f1</span><span class="o">-</span><span class="n">score</span>   <span class="n">support</span>
+
+           <span class="mi">0</span>       <span class="mf">0.95</span>      <span class="mf">0.95</span>      <span class="mf">0.95</span>      <span class="mi">3373</span>
+           <span class="mi">1</span>       <span class="mf">0.97</span>      <span class="mf">0.98</span>      <span class="mf">0.97</span>      <span class="mi">2977</span>
+           <span class="mi">2</span>       <span class="mf">0.84</span>      <span class="mf">0.87</span>      <span class="mf">0.85</span>       <span class="mi">840</span>
+           <span class="mi">3</span>       <span class="mf">0.94</span>      <span class="mf">0.91</span>      <span class="mf">0.93</span>      <span class="mi">1406</span>
+           <span class="mi">4</span>       <span class="mf">0.98</span>      <span class="mf">0.99</span>      <span class="mf">0.99</span>       <span class="mi">439</span>
+           <span class="mi">5</span>       <span class="mf">0.86</span>      <span class="mf">0.80</span>      <span class="mf">0.83</span>       <span class="mi">396</span>
+           <span class="mi">6</span>       <span class="mf">0.94</span>      <span class="mf">0.97</span>      <span class="mf">0.96</span>      <span class="mi">2655</span>
+           <span class="mi">7</span>       <span class="mf">0.98</span>      <span class="mf">0.97</span>      <span class="mf">0.98</span>      <span class="mi">1839</span>
+           <span class="mi">8</span>       <span class="mf">1.00</span>      <span class="mf">0.98</span>      <span class="mf">0.99</span>      <span class="mi">2472</span>
+
+   <span class="n">micro</span> <span class="n">avg</span>       <span class="mf">0.95</span>      <span class="mf">0.95</span>      <span class="mf">0.95</span>     <span class="mi">16397</span>
+   <span class="n">macro</span> <span class="n">avg</span>       <span class="mf">0.94</span>      <span class="mf">0.94</span>      <span class="mf">0.94</span>     <span class="mi">16397</span>
+<span class="n">weighted</span> <span class="n">avg</span>       <span class="mf">0.95</span>      <span class="mf">0.95</span>      <span class="mf">0.95</span>     <span class="mi">16397</span>
+
+<span class="n">Accuracy</span><span class="p">:</span> <span class="mf">95.45</span> <span class="o">%</span>
+</pre></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="HTRU1 Batched Dataset Classification.html" class="btn btn-neutral float-right" title="HTRU1 Batched Dataset Classification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Astronomical Image Reconstruction using Autoencoder.html" class="btn btn-neutral float-left" title="Astronomical Image Reconstruction using Autoencoder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Swapnil Sharma, Akhil Singhal
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

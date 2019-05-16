@@ -1,0 +1,111 @@
+
+.. code:: ipython3
+
+    from mirapy.data.load_dataset import load_atlas_star_data
+    from mirapy.classifiers.models import AtlasVarStarClassifier
+    import mirapy
+    
+    import os
+    from os import walk
+    import pandas as pd
+    from sklearn.metrics import classification_report, accuracy_score
+    from sklearn.model_selection import train_test_split
+    from keras.optimizers import Adam
+    from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+    from sklearn.preprocessing import StandardScaler
+
+
+.. parsed-literal::
+
+    Using TensorFlow backend.
+
+
+.. code:: ipython3
+
+    path = 'D:\MTP\ATLAS\dataset'
+    csv_file = os.path.join(path, "non_dub.csv")
+
+Ignore feature list to use features selected using feature selection
+
+.. code:: ipython3
+
+    x_train, y_train, x_test, y_test = load_atlas_star_data(csv_file, 0.2)
+
+.. code:: ipython3
+
+    classifier = AtlasVarStarClassifier('relu', 'adam', input_size=x_train[0].shape[0], num_classes=y_train[0].shape[0])
+    classifier.compile('mean_squared_error')
+
+.. code:: ipython3
+
+    # classifier.train(x_train, y_train, epochs=50,
+    #                        batch_size=32)
+    classifier.model.fit(x_train, y_train, epochs=10,
+                           batch_size=32, verbose=2)
+
+
+.. parsed-literal::
+
+    Epoch 1/10
+     - 10s - loss: 0.0072 - acc: 0.9576
+    Epoch 2/10
+     - 9s - loss: 0.0073 - acc: 0.9567
+    Epoch 3/10
+     - 9s - loss: 0.0072 - acc: 0.9569
+    Epoch 4/10
+     - 10s - loss: 0.0071 - acc: 0.9583
+    Epoch 5/10
+     - 10s - loss: 0.0070 - acc: 0.9585
+    Epoch 6/10
+     - 10s - loss: 0.0069 - acc: 0.9592
+    Epoch 7/10
+     - 9s - loss: 0.0069 - acc: 0.9587
+    Epoch 8/10
+     - 9s - loss: 0.0068 - acc: 0.9596
+    Epoch 9/10
+     - 9s - loss: 0.0068 - acc: 0.9599
+    Epoch 10/10
+     - 9s - loss: 0.0067 - acc: 0.9606
+
+
+
+
+.. parsed-literal::
+
+    <keras.callbacks.History at 0x1c568a10898>
+
+
+
+convert string classes to integer encoded
+
+.. code:: ipython3
+
+    label_encoder = LabelEncoder()
+    integer_encoded = label_encoder.fit_transform(y_test)
+    y_test = integer_encoded
+    
+    y_predicted = classifier.test(x_test)
+    print(classification_report(y_test, y_predicted))
+    print("Accuracy:", round(accuracy_score(y_test, y_predicted)*100, 2), "%")
+
+
+.. parsed-literal::
+
+                  precision    recall  f1-score   support
+    
+               0       0.95      0.95      0.95      3373
+               1       0.97      0.98      0.97      2977
+               2       0.84      0.87      0.85       840
+               3       0.94      0.91      0.93      1406
+               4       0.98      0.99      0.99       439
+               5       0.86      0.80      0.83       396
+               6       0.94      0.97      0.96      2655
+               7       0.98      0.97      0.98      1839
+               8       1.00      0.98      0.99      2472
+    
+       micro avg       0.95      0.95      0.95     16397
+       macro avg       0.94      0.94      0.94     16397
+    weighted avg       0.95      0.95      0.95     16397
+    
+    Accuracy: 95.45 %
+
